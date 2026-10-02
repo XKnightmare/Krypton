@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>NEXUS // ENG — Owner Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================
+   NEXUS // ENG — OWNER REGISTRY CONSOLE
+   ========================================================= */
+:root {
+  --bg: #0B0F19;
+  --bg-alt: #0E1320;
+  --panel: #121828;
+  --panel-2: #0D111C;
+  --white: #FFFFFF;
+  --grey: #9CA3AF;
+  --grey-dim: #6B7280;
+  --crimson: #EF4444;
+  --crimson-dim: rgba(239, 68, 68, 0.35);
+  --gold: #F59E0B;
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+.gold { color: var(--gold); }
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.btn--solid { background: var(--crimson); color: var(--white); border: 1px solid var(--crimson); font-size: 12px; padding: 11px 20px; }
+.btn--solid:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+.btn--submit { width: 100%; background: var(--crimson); color: var(--white); border: 1px solid var(--crimson); font-size: 14px; padding: 17px; }
+.btn--submit:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+.btn--submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- top bar ---------- */
+.obar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 15, 25, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.obar__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.obar__logo { font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: 0.14em; white-space: nowrap; }
+.obar__logo span { color: var(--crimson); }
+.obar__tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.26em;
+  color: var(--gold);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.obar__actions { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+.obar__link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--grey); transition: color 0.2s; }
+.obar__link:hover { color: var(--white); }
+
+main { flex: 1; width: 100%; }
+
+/* ---------- login ---------- */
+.lock { min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center; padding: 48px 20px; }
+.lock[hidden] { display: none; }
+.lock__card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--panel-2);
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--crimson);
+  padding: clamp(28px, 5vw, 46px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.kicker { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.28em; color: var(--crimson); }
+.lock__title { font-size: clamp(30px, 5vw, 44px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin: 12px 0 10px; }
+.lock__sub { color: var(--grey); font-size: 14.5px; line-height: 1.7; }
+.lock__form { margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+.lock__msg { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; min-height: 18px; color: var(--gold); }
+.lock__msg.is-ok { color: #34D399; }
+.lock__foot { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--grey-dim); line-height: 1.8; }
+
+/* ---------- fields ---------- */
+.field { display: flex; flex-direction: column; gap: 9px; }
+.field label { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; color: var(--grey); }
+.field input, .field select {
+  width: 100%;
+  background: #070A11;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--white);
+  font-family: var(--display);
+  font-size: 16px;
+  padding: 15px 16px;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.field select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23EF4444' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px;
+  cursor: pointer;
+}
+.field input::placeholder { color: #6E7686; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(239, 68, 68, 0.18); }
+.field input.is-error, .field select.is-error { border-color: var(--gold); }
+
+/* ---------- dashboard ---------- */
+.dash { max-width: 1240px; margin: 0 auto; padding: 44px 32px 70px; width: 100%; }
+.dash[hidden] { display: none; }
+.dash__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.dash__title { font-size: clamp(28px, 4vw, 46px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin-top: 10px; }
+.dash__badge { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; color: var(--bg); background: var(--crimson); padding: 9px 14px; font-weight: 700; white-space: nowrap; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 26px; }
+.stats > div { border: 1px solid var(--line); background: var(--panel-2); padding: 18px; }
+.stats span { display: block; font-family: var(--mono); font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); color: var(--white); line-height: 1.2; word-break: break-word; }
+.stats > div:nth-child(2) span, .stats > div:nth-child(3) span, .stats > div:nth-child(4) span { font-size: clamp(14px, 1.6vw, 18px); padding-top: 8px; }
+.stats label { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.24em; color: var(--gold); margin-top: 10px; }
+
+/* ---------- toolbar ---------- */
+.toolbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 22px; }
+.search {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: #070A11;
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 13px 16px;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+.search:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(239, 68, 68, 0.18); }
+.search::placeholder { color: #6E7686; }
+.btn--tool { background: transparent; border: 1px solid var(--line-strong); color: var(--white); font-size: 11px; padding: 13px 17px; }
+.btn--tool:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+.btn--purge { background: transparent; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; padding: 13px 17px; }
+.btn--purge:hover { background: var(--gold); color: var(--bg); }
+
+/* ---------- add panel ---------- */
+.addpanel { background: var(--panel-2); border: 1px solid var(--line-strong); border-left: 3px solid var(--crimson); padding: 24px; margin-bottom: 22px; }
+.addpanel[hidden] { display: none; }
+.addpanel__title { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.24em; color: var(--gold); margin-bottom: 18px; }
+.addpanel__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.addpanel__grid .span2 { grid-column: span 2; }
+.addpanel__actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+.addpanel__actions .btn { padding: 13px 22px; font-size: 11px; }
+.btn--ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--grey); }
+.btn--ghost:hover { color: var(--white); border-color: var(--white); }
+
+/* ---------- sync bar ---------- */
+.syncbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--grey);
+  border: 1px solid var(--line);
+  background: #0A0E18;
+  padding: 11px 14px;
+  margin-bottom: 22px;
+}
+.syncbar__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grey-dim); flex: 0 0 auto; }
+.syncbar__dot--ok { background: #34D399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.6); }
+.syncbar__dot--load { background: var(--gold); animation: blink 0.9s steps(2, jump-none) infinite; }
+.syncbar__dot--err { background: var(--crimson); box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
+.syncbar__dot--local { background: var(--gold); }
+.syncbar .act { margin-left: auto; }
+@keyframes blink { 50% { opacity: 0.25; } }
+
+/* ---------- table ---------- */
+.tableWrap { border: 1px solid var(--line); background: var(--panel-2); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; min-width: 1020px; }
+th {
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--line-strong);
+  background: #0A0E18;
+  white-space: nowrap;
+}
+td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: rgba(239, 68, 68, 0.05); }
+td.c-lead { color: var(--white); font-weight: 700; white-space: nowrap; }
+td.c-num { color: var(--grey-dim); width: 44px; }
+.emptyRow td { text-align: center; padding: 40px 16px; letter-spacing: 0.14em; color: var(--grey-dim); }
+
+.cellInput, .cellSelect {
+  width: 100%;
+  min-width: 90px;
+  background: #070A11;
+  border: 1px solid var(--crimson);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 8px 9px;
+}
+.cellInput:focus, .cellSelect:focus { outline: none; box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25); }
+.cellSelect { cursor: pointer; }
+
+.actions { display: flex; gap: 8px; }
+.act {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 7px 11px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--grey);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.act:hover { color: var(--white); border-color: var(--white); }
+.act--edit:hover { color: var(--crimson); border-color: var(--crimson); }
+.act--del:hover { color: var(--gold); border-color: var(--gold); }
+.act--save { background: var(--crimson); border-color: var(--crimson); color: var(--white); }
+.act--save:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+
+.note { margin-top: 18px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--grey-dim); line-height: 1.8; }
+
+/* ---------- footer ---------- */
+.foot { border-top: 1px solid var(--line); background: var(--panel-2); padding: 22px 32px; }
+.foot__inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--grey-dim); }
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .addpanel__grid { grid-template-columns: 1fr; }
+  .addpanel__grid .span2 { grid-column: auto; }
+}
+@media (max-width: 640px) {
+  .obar__inner { padding: 0 18px; gap: 10px; }
+  .obar__tag { display: none; }
+  .dash { padding: 32px 18px 56px; }
+  .stats { grid-template-columns: 1fr; }
+  .obar__link { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="obar">
+  <div class="obar__inner">
+    <a class="obar__logo" href="index.html">NEXUS <span>// ENG</span></a>
+    <span class="obar__tag">OWNER REGISTRY // RESTRICTED</span>
+    <div class="obar__actions">
+      <a class="obar__link" href="index.html">← PUBLIC SITE</a>
+      <button type="button" class="btn btn--solid" id="logout-btn" hidden>LOGOUT</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ LOGIN GATE ============ -->
+  <section class="lock" id="lock-view">
+    <div class="lock__card">
+      <p class="kicker">RESTRICTED CHANNEL // AUTH REQUIRED</p>
+      <h1 class="lock__title">Owner Access</h1>
+      <p class="lock__sub">Credential gate for the NEXUS registration registry. Authorized event chairs only — all activity stays in this browser.</p>
+
+      <form class="lock__form" id="login-form" novalidate>
+        <div class="field">
+          <label for="username">USERNAME</label>
+          <input type="text" id="username" name="username" placeholder="owner callsign" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">PASSWORD</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn btn--submit" id="login-btn">AUTHENTICATE</button>
+        <p class="lock__msg" id="lock-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="lock__foot">
+        SESSION: PERSISTENT UNTIL LOGOUT OR TAB CLOSE<br />
+        5 FAILED ATTEMPTS TRIGGERS A 30-SECOND COOLDOWN
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section class="dash" id="dash-view" hidden>
+    <div class="dash__head">
+      <div>
+        <p class="kicker">REGISTRY // LIVE SUBMISSION LEDGER</p>
+        <h1 class="dash__title">Registration Control</h1>
+      </div>
+      <span class="dash__badge" id="badge-count">0 ENTRIES</span>
+    </div>
+
+    <div class="syncbar">
+      <span class="syncbar__dot" id="sync-dot"></span>
+      <span id="sync-text">CHECKING SHARED REGISTRY…</span>
+      <button type="button" class="act" id="sync-refresh">REFRESH</button>
+    </div>
+
+    <div class="stats">
+      <div><span id="st-total">0</span><label>TOTAL ENTRIES</label></div>
+      <div><span id="st-last">—</span><label>LAST SUBMISSION</label></div>
+      <div><span id="st-split">—</span><label>TRACK SPLIT // RB · AI · HW</label></div>
+      <div><span id="st-avg">—</span><label>AVG TEAM SIZE</label></div>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" class="search" id="search" placeholder="FILTER BY NAME / EMAIL / INSTITUTION / TRACK…" />
+      <button type="button" class="btn btn--solid" id="add-toggle">+ ADD MANUAL ENTRY</button>
+      <button type="button" class="btn btn--tool" id="export-csv">EXPORT .CSV</button>
+      <button type="button" class="btn btn--tool" id="export-json">EXPORT .JSON</button>
+      <button type="button" class="btn btn--purge" id="purge-btn">PURGE ALL</button>
+    </div>
+
+    <!-- manual entry panel -->
+    <div class="addpanel" id="addpanel" hidden>
+      <p class="addpanel__title">MANUAL ENTRY // OFFLINE REGISTRATION OVERRIDE</p>
+      <div class="addpanel__grid">
+        <div class="field span2">
+          <label for="m-lead">PRIMARY TEAM LEAD NAME</label>
+          <input type="text" id="m-lead" placeholder="e.g. Aarav Mehta" />
+        </div>
+        <div class="field">
+          <label for="m-email">CONTACT EMAIL</label>
+          <input type="email" id="m-email" placeholder="e.g. lead@institution.edu" />
+        </div>
+        <div class="field">
+          <label for="m-size">TEAM SIZE</label>
+          <select id="m-size">
+            <option value="2">2 members</option>
+            <option value="3">3 members</option>
+            <option value="4">4 members</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m-track">FOCUS TRACK</label>
+          <select id="m-track">
+            <option>Robotics</option>
+            <option>AI / Software</option>
+            <option>Hardware Design</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m-inst">INSTITUTION</label>
+          <input type="text" id="m-inst" placeholder="e.g. National Institute of Technology" />
+        </div>
+      </div>
+      <div class="addpanel__actions">
+        <button type="button" class="btn btn--solid" id="add-save">COMMIT ENTRY</button>
+        <button type="button" class="btn btn--ghost" id="add-cancel">CANCEL</button>
+        <span class="lock__msg" id="add-msg" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div class="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>TIMESTAMP</th><th>TEAM LEAD</th><th>EMAIL</th>
+            <th>SIZE</th><th>TRACK</th><th>INSTITUTION</th><th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      STORAGE: LOCAL BROWSER (localStorage // KEY: nexus_registrations). SUBMISSIONS FROM index.html IN THIS BROWSER APPEAR HERE LIVE — INLINE EDIT, DELETE, SEARCH, EXPORT AT WILL.
+    </p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <p>© 2026 NEXUS ENGINEERING COUNCIL — RESTRICTED SYSTEM // NX-ENG-S04-OWNER-0001</p>
+    <p>NODE: IN-BLR-01 // AUTH: SHA-256 // TZ: UTC+05:30</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   NEXUS // ENG — OWNER REGISTRY RUNTIME
+   ========================================================= */
+(function () {
+  "use strict";
+
+  /* ---------- CREDENTIALS ----------
+     Username is plain-text; the password is stored as a SHA-256 hex digest
+     so it never appears in the source. To set your own password, run this
+     in the browser console ON THIS PAGE and paste the result below:
+
+        hashPass("your-new-password").then(console.log)
+  */
+  var OWNER_USER = "admin"; // ← CHANGE USERNAME
+  var OWNER_PASS_HASH = "d3af3a8bfc53ead1bb78d744305dc792668b0f50ab4a8292e00648d100224105"; // ← CHANGE PASSWORD HASH
+  var MAX_ATTEMPTS = 5;
+  var COOLDOWN_MS = 30000;
+
+  /* ---------- SHA-256 (async WebCrypto, sync pure-JS fallback) ---------- */
+  function sha256js(ascii) {
+    function rightRotate(value, amount) {
+      return (value >>> amount) | (value << (32 - amount));
+    }
+    var mathPow = Math.pow;
+    var maxWord = mathPow(2, 32);
+    var result = "";
+    var words = [];
+    var asciiBitLength = ascii.length * 8;
+    var hash = (sha256js.h = sha256js.h || []);
+    var k = (sha256js.k = sha256js.k || []);
+    var primeCounter = k.length;
+    var isComposite = {};
+    for (var candidate = 2; primeCounter < 64; candidate++) {
+      if (!isComposite[candidate]) {
+        for (var i = 0; i < 313; i += candidate) isComposite[i] = candidate;
+        hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+        k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+      }
+    }
+    ascii += "\x80";
+    while ((ascii.length * 8) % 64 - 56) ascii += "\x00";
+    for (var i2 = 0; i2 < ascii.length; i2++) {
+      var j = ascii.charCodeAt(i2);
+      if (j >> 8) return "";
+      words[i2 >> 2] |= j << (((3 - i2) % 4) * 8);
+    }
+    words[words.length] = (asciiBitLength / maxWord) | 0;
+    words[words.length] = asciiBitLength;
+    for (var j2 = 0; j2 < words.length; ) {
+      var w = words.slice(j2, (j2 += 16));
+      var oldHash = hash;
+      hash = hash.slice(0, 8);
+      for (var i3 = 0; i3 < 64; i3++) {
+        var w15 = w[i3 - 15];
+        var w2 = w[i3 - 2];
+        var a = hash[0];
+        var e = hash[4];
+        var temp1 =
+          hash[7] +
+          (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) +
+          ((e & hash[5]) ^ (~e & hash[6])) +
+          k[i3] +
+          (w[i3] =
+            i3 < 16
+              ? w[i3]
+              : (w[i3 - 16] +
+                  (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) +
+                  w[i3 - 7] +
+                  (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))) |
+                0);
+        var temp2 =
+          (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) +
+          ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+        hash = [(temp1 + temp2) | 0].concat(hash);
+        hash[4] = (hash[4] + temp1) | 0;
+      }
+      for (var i4 = 0; i4 < 8; i4++) hash[i4] = (hash[i4] + oldHash[i4]) | 0;
+    }
+    for (var i5 = 0; i5 < 8; i5++) {
+      for (var j3 = 3; j3 + 1; j3--) {
+        var b = (hash[i5] >> (j3 * 8)) & 255;
+        result += (b < 16 ? "0" : "") + b.toString(16);
+      }
+    }
+    return result;
+  }
+
+  window.hashPass = function (str) {
+    if (window.crypto && crypto.subtle && crypto.subtle.digest && window.TextEncoder) {
+      return crypto.subtle
+        .digest("SHA-256", new TextEncoder().encode(str))
+        .then(function (buf) {
+          return Array.prototype.map
+            .call(new Uint8Array(buf), function (b) {
+              return b.toString(16).padStart(2, "0");
+            })
+            .join("");
+        });
+    }
+    return Promise.resolve(sha256js(str));
+  };
+
+  /* ---------- SHARED REGISTRY CONFIG ----------
+     Paste your deployed Apps Script Web App URL between the quotes below AND
+     in index.html. Leave "" to run in local-only (single device) mode.
+     Setup guide: SETUP.md | Backend: nexus-sheet-backend.gs
+     SHEET_KEY must match API_KEY inside the Apps Script. */
+  var SHEET_URL = "https://script.google.com/macros/s/AKfycbzd3XtH9yTtwIsweLFPOThTZSmScsZPFW4Cx-N8nwPlwrxAtft2ZvNfhG595oaM8ldh/exec";
+  var SHEET_KEY = "NEXUS-S04-KEY-8F3A2B";
+
+  /* ---------- STORAGE ---------- */
+  var STORE_KEY = "nexus_registrations";
+  var AUTH_KEY = "nexus_owner_auth";
+
+  function isRemote() {
+    return Boolean(SHEET_URL) || typeof window.__mockApi === "function";
+  }
+
+ /* Transport: JSONP directly to bypass Google redirect CORS restrictions */
+  function apiCall(params) {
+    if (typeof window.__mockApi === "function") return window.__mockApi(params);
+    if (!SHEET_URL) return Promise.reject(new Error("NOT_CONFIGURED"));
+    var merged = { key: SHEET_KEY };
+    Object.keys(params).forEach(function (k) {
+      merged[k] = params[k];
+    });
+    var qs = Object.keys(merged)
+      .map(function (k) {
+        return encodeURIComponent(k) + "=" + encodeURIComponent(merged[k]);
+      })
+      .join("&");
+    var url = SHEET_URL + (SHEET_URL.indexOf("?") >= 0 ? "&" : "?") + qs;
+    return jsonpCall(url);
+  }
+
+  function jsonpCall(url) {
+    return new Promise(function (resolve, reject) {
+      var name = "__nxCb" + Date.now() + Math.floor(Math.random() * 1e6);
+      var script = document.createElement("script");
+      var done = false;
+      var timer = setTimeout(function () {
+        finish(new Error("TIMEOUT"));
+      }, 15000);
+      function finish(err, data) {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        try {
+          delete window[name];
+        } catch (e) {
+          window[name] = undefined;
+        }
+        if (script.parentNode) script.parentNode.removeChild(script);
+        if (err) reject(err);
+        else resolve(data);
+      }
+      window[name] = function (data) {
+        finish(null, data);
+      };
+      script.src = url + "&cb=" + name;
+      script.onerror = function () {
+        finish(new Error("NETWORK"));
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  function loadData() {
+    try {
+      return JSON.parse(localStorage.getItem(STORE_KEY)) || [];
+    } catch (e) {
+      return window.__nexusRegs || [];
+    }
+  }
+  function saveData(list) {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(list));
+    } catch (e) {
+      window.__nexusRegs = list;
+    }
+  }
+
+  function fmtTs(iso) {
+    try {
+      return new Date(iso).toLocaleString("en-GB", {
+        day: "2-digit", month: "short", year: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      });
+    } catch (e) {
+      return iso || "—";
+    }
+  }
+  function trackShort(label) {
+    if (String(label).indexOf("Robotics") === 0) return "RB";
+    if (String(label).indexOf("AI") === 0) return "AI";
+    return "HW";
+  }
+  function esc(s) { return String(s == null ? "" : s); }
+
+  /* ---------- ELEMENTS ---------- */
+  var lockView = document.getElementById("lock-view");
+  var dashView = document.getElementById("dash-view");
+  var loginForm = document.getElementById("login-form");
+  var lockMsg = document.getElementById("lock-msg");
+  var loginBtn = document.getElementById("login-btn");
+  var logoutBtn = document.getElementById("logout-btn");
+  var rowsEl = document.getElementById("rows");
+  var searchEl = document.getElementById("search");
+  var addPanel = document.getElementById("addpanel");
+  var addMsg = document.getElementById("add-msg");
+
+  var attempts = 0;
+  var cooldownUntil = 0;
+  var editingId = null;
+
+  function sessionOk() {
+    try {
+      return sessionStorage.getItem(AUTH_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* ---------- VIEWS ---------- */
+  function showDash() {
+    lockView.hidden = true;
+    dashView.hidden = false;
+    logoutBtn.hidden = false;
+    render();
+    refreshFromSheet();
+  }
+  function showLock(msg, isOk) {
+    dashView.hidden = true;
+    lockView.hidden = false;
+    logoutBtn.hidden = true;
+    lockMsg.textContent = msg || "";
+    lockMsg.classList.toggle("is-ok", !!isOk);
+  }
+
+  /* ---------- LOGIN ---------- */
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (Date.now() < cooldownUntil) return;
+
+    var user = document.getElementById("username").value.trim();
+    var pass = document.getElementById("password").value;
+
+    if (!user || !pass) {
+      lockMsg.textContent = "// BOTH CREDENTIALS REQUIRED.";
+      lockMsg.classList.remove("is-ok");
+      return;
+    }
+
+    hashPass(pass).then(function (digest) {
+      if (user === OWNER_USER && digest === OWNER_PASS_HASH) {
+        try {
+          sessionStorage.setItem(AUTH_KEY, "1");
+        } catch (err) {}
+        attempts = 0;
+        loginForm.reset();
+        lockMsg.textContent = "";
+        showDash();
+      } else {
+        attempts++;
+        var left = MAX_ATTEMPTS - attempts;
+        if (attempts >= MAX_ATTEMPTS) {
+          cooldownUntil = Date.now() + COOLDOWN_MS;
+          attempts = 0;
+          loginBtn.disabled = true;
+          lockMsg.textContent = "// ACCESS DENIED — 30S COOLDOWN ENGAGED.";
+          var iv = setInterval(function () {
+            var s = Math.ceil((cooldownUntil - Date.now()) / 1000);
+            if (s <= 0) {
+              clearInterval(iv);
+              loginBtn.disabled = false;
+              lockMsg.textContent = "// COOLDOWN CLEARED — RETRY.";
+            } else {
+              lockMsg.textContent = "// COOLDOWN — RETRY IN " + s + "S.";
+            }
+          }, 1000);
+        } else {
+          lockMsg.textContent = "// ACCESS DENIED — " + left + " ATTEMPT" + (left === 1 ? "" : "S") + " REMAINING.";
+        }
+        lockMsg.classList.remove("is-ok");
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+      }
+    });
+  });
+
+  logoutBtn.addEventListener("click", function () {
+    try {
+      sessionStorage.removeItem(AUTH_KEY);
+    } catch (e) {}
+    editingId = null;
+    addPanel.hidden = true;
+    showLock("// SESSION TERMINATED — LOCKED.", true);
+    document.getElementById("username").focus();
+  });
+
+  /* ---------- SHARED SHEET SYNC ---------- */
+  var syncDot = document.getElementById("sync-dot");
+  var syncText = document.getElementById("sync-text");
+
+  function setSync(state, text) {
+    syncDot.className = "syncbar__dot syncbar__dot--" + state;
+    syncText.textContent = text;
+  }
+
+  function byTsDesc(a, b) {
+    return String(b.ts || "").localeCompare(String(a.ts || ""));
+  }
+
+  function refreshFromSheet() {
+    if (!isRemote()) {
+      setSync(
+        "local",
+        "LOCAL-ONLY MODE — PASTE YOUR SHEET URL INTO owner.html TO SYNC ACROSS DEVICES"
+      );
+      return Promise.resolve();
+    }
+    setSync("load", "CONNECTING TO SHARED REGISTRY…");
+    return apiCall({ op: "list" })
+      .then(function (res) {
+        if (!res || !res.ok || !res.rows) throw new Error("bad response");
+        var remote = res.rows;
+        var local = loadData();
+        var remoteIds = {};
+        remote.forEach(function (r) {
+          remoteIds[String(r.id)] = true;
+        });
+        var orphans = local.filter(function (r) {
+          return !remoteIds[String(r.id)];
+        });
+
+        function commit(rows, msg) {
+          rows.sort(byTsDesc);
+          saveData(rows);
+          render();
+          setSync("ok", msg);
+        }
+
+        if (!orphans.length) {
+          commit(
+            remote.slice(),
+            "SHARED SHEET: CONNECTED — " +
+              remote.length +
+              " ENTR" +
+              (remote.length === 1 ? "Y" : "IES")
+          );
+          return;
+        }
+
+        var chain = Promise.resolve();
+        orphans.forEach(function (r) {
+          chain = chain.then(function () {
+            return apiCall({ op: "add", payload: JSON.stringify(r) });
+          });
+        });
+        return chain.then(function () {
+          commit(
+            remote.concat(orphans),
+            "SHARED SHEET: CONNECTED — PUSHED " +
+              orphans.length +
+              " DEVICE-LOCAL ENTR" +
+              (orphans.length === 1 ? "Y" : "IES")
+          );
+        });
+      })
+      .catch(function () {
+        render();
+        setSync("err", "SHARED SHEET UNREACHABLE — SHOWING LAST LOCAL CACHE");
+      });
+  }
+
+  document.getElementById("sync-refresh").addEventListener("click", refreshFromSheet);
+
+  /* ---------- RENDER ---------- */
+  function visibleData() {
+    var list = loadData();
+    var q = searchEl.value.trim().toLowerCase();
+    if (!q) return list;
+    return list.filter(function (r) {
+      return [r.lead, r.email, r.track, r.institution, r.size]
+        .join(" ")
+        .toLowerCase()
+        .indexOf(q) !== -1;
+    });
+  }
+
+  function render() {
+    var all = loadData();
+    var list = visibleData();
+
+    // stats
+    document.getElementById("st-total").textContent = all.length;
+    document.getElementById("badge-count").textContent =
+      all.length + (all.length === 1 ? " ENTRY" : " ENTRIES");
+    document.getElementById("st-last").textContent = all.length ? fmtTs(all[0].ts) : "—";
+    var split = {};
+    all.forEach(function (r) {
+      var k = trackShort(r.track);
+      split[k] = (split[k] || 0) + 1;
+    });
+    document.getElementById("st-split").textContent = all.length
+      ? Object.keys(split).map(function (k) { return k + ":" + split[k]; }).join("   ")
+      : "—";
+    var avg = all.length
+      ? all.reduce(function (s, r) { return s + (parseInt(r.size, 10) || 0); }, 0) / all.length
+      : 0;
+    document.getElementById("st-avg").textContent = all.length ? avg.toFixed(1) + " / 4" : "—";
+
+    // rows
+    rowsEl.textContent = "";
+
+    if (!list.length) {
+      var tr0 = document.createElement("tr");
+      tr0.className = "emptyRow";
+      var td0 = document.createElement("td");
+      td0.colSpan = 8;
+      td0.textContent = all.length
+        ? "// NO ENTRIES MATCH THE CURRENT FILTER."
+        : "// REGISTRY EMPTY — SUBMISSIONS FROM index.html APPEAR HERE INSTANTLY.";
+      tr0.appendChild(td0);
+      rowsEl.appendChild(tr0);
+      return;
+    }
+
+    list.forEach(function (r, i) {
+      var id = String(r.id);
+      var tr = document.createElement("tr");
+
+      var tdNum = document.createElement("td");
+      tdNum.className = "c-num";
+      tdNum.textContent = all.length - all.indexOf(r);
+      tr.appendChild(tdNum);
+
+      if (editingId === id) {
+        tr.appendChild(cellText(fmtTs(r.ts)));
+        tr.appendChild(cellEdit("lead", r.lead));
+        tr.appendChild(cellEdit("email", r.email));
+        tr.appendChild(cellSelect(["2", "3", "4"], String(r.size), "size"));
+        tr.appendChild(cellSelect(["Robotics", "AI / Software", "Hardware Design"], r.track, "track"));
+        tr.appendChild(cellEdit("institution", r.institution));
+        tr.appendChild(cellActions(id, true));
+      } else {
+        tr.appendChild(cellText(fmtTs(r.ts)));
+        tr.appendChild(cellText(r.lead, "c-lead"));
+        tr.appendChild(cellText(r.email));
+        tr.appendChild(cellText(r.size + " members"));
+        tr.appendChild(cellText(r.track));
+        tr.appendChild(cellText(r.institution));
+        tr.appendChild(cellActions(id, false));
+      }
+      rowsEl.appendChild(tr);
+    });
+  }
+
+  function cellText(v, cls) {
+    var td = document.createElement("td");
+    if (cls) td.className = cls;
+    td.textContent = esc(v);
+    return td;
+  }
+  function cellEdit(name, value) {
+    var td = document.createElement("td");
+    var input = document.createElement("input");
+    input.type = "text";
+    input.className = "cellInput";
+    input.dataset.field = name;
+    input.value = esc(value);
+    td.appendChild(input);
+    return td;
+  }
+  function cellSelect(options, value, name) {
+    var td = document.createElement("td");
+    var sel = document.createElement("select");
+    sel.className = "cellSelect";
+    sel.dataset.field = name;
+    options.forEach(function (o) {
+      var opt = document.createElement("option");
+      opt.value = o;
+      opt.textContent = name === "size" ? o + " members" : o;
+      if (o === value) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    td.appendChild(sel);
+    return td;
+  }
+  function cellActions(id, editing) {
+    var td = document.createElement("td");
+    var wrap = document.createElement("div");
+    wrap.className = "actions";
+    if (editing) {
+      wrap.appendChild(mkBtn("SAVE", "act act--save", function () { saveEdit(id); }));
+      wrap.appendChild(mkBtn("CANCEL", "act", function () { editingId = null; render(); }));
+    } else {
+      wrap.appendChild(mkBtn("EDIT", "act act--edit", function () { editingId = id; render(); focusFirstEdit(); }));
+      wrap.appendChild(mkBtn("DELETE", "act act--del", function () { deleteEntry(id); }));
+    }
+    td.appendChild(wrap);
+    return td;
+  }
+  function mkBtn(label, cls, fn) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = cls;
+    b.textContent = label;
+    b.addEventListener("click", fn);
+    return b;
+  }
+  function focusFirstEdit() {
+    var first = rowsEl.querySelector(".cellInput");
+    if (first) { first.focus(); first.select(); }
+  }
+
+  /* ---------- CRUD ---------- */
+  function saveEdit(id) {
+    var tr = null;
+    rowsEl.querySelectorAll("tr").forEach(function (row) {
+      var btns = row.querySelectorAll(".act--save");
+      if (btns.length) tr = row;
+    });
+    if (!tr) return;
+
+    var vals = {};
+    tr.querySelectorAll("[data-field]").forEach(function (inp) {
+      vals[inp.dataset.field] = inp.value.trim();
+    });
+
+    if (!vals.lead || !vals.email || !vals.institution) {
+      tr.querySelectorAll("[data-field]").forEach(function (inp) {
+        inp.classList.toggle("is-error", !inp.value.trim());
+      });
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email)) {
+      var emailInp = tr.querySelector('[data-field="email"]');
+      if (emailInp) { emailInp.classList.add("is-error"); emailInp.focus(); }
+      return;
+    }
+
+    if (isRemote()) {
+      apiCall({ op: "update", payload: JSON.stringify({ id: id, changes: vals }) })
+        .then(function (res) {
+          if (!res || !res.ok) throw new Error("bad");
+          var l = loadData();
+          l.forEach(function (r) {
+            if (String(r.id) === id) {
+              r.lead = vals.lead;
+              r.email = vals.email;
+              r.size = vals.size;
+              r.track = vals.track;
+              r.institution = vals.institution;
+              r.edited = new Date().toISOString();
+            }
+          });
+          saveData(l);
+          editingId = null;
+          render();
+          setSync("ok", "SHARED SHEET: CONNECTED — ENTRY UPDATED");
+        })
+        .catch(function () {
+          setSync("err", "UPDATE FAILED — SHEET UNREACHABLE. KEEP EDITING, THEN RETRY SAVE.");
+        });
+      return;
+    }
+
+    var list = loadData();
+    list.forEach(function (r) {
+      if (String(r.id) === id) {
+        r.lead = vals.lead;
+        r.email = vals.email;
+        r.size = vals.size;
+        r.track = vals.track;
+        r.institution = vals.institution;
+        r.edited = new Date().toISOString();
+      }
+    });
+    saveData(list);
+    editingId = null;
+    render();
+  }
+
+  function deleteEntry(id) {
+    var list = loadData();
+    var target = list.filter(function (r) { return String(r.id) === id; })[0];
+    if (!target) return;
+    if (confirm('DELETE ENTRY FOR "' + target.lead + '"? THIS CANNOT BE UNDONE.')) {
+      if (isRemote()) {
+        apiCall({ op: "delete", id: id })
+          .then(function (res) {
+            if (!res || !res.ok) throw new Error("bad");
+            saveData(loadData().filter(function (r) { return String(r.id) !== id; }));
+            if (editingId === id) editingId = null;
+            render();
+            setSync("ok", "SHARED SHEET: CONNECTED — ENTRY DELETED");
+          })
+          .catch(function () {
+            setSync("err", "DELETE FAILED — SHEET UNREACHABLE. NOTHING CHANGED.");
+          });
+        return;
+      }
+      saveData(list.filter(function (r) { return String(r.id) !== id; }));
+      if (editingId === id) editingId = null;
+      render();
+    }
+  }
+
+  /* ---------- MANUAL ADD ---------- */
+  document.getElementById("add-toggle").addEventListener("click", function () {
+    addPanel.hidden = !addPanel.hidden;
+    addMsg.textContent = "";
+    if (!addPanel.hidden) document.getElementById("m-lead").focus();
+  });
+  document.getElementById("add-cancel").addEventListener("click", function () {
+    addPanel.hidden = true;
+    addMsg.textContent = "";
+  });
+  document.getElementById("add-save").addEventListener("click", function () {
+    var lead = document.getElementById("m-lead").value.trim();
+    var email = document.getElementById("m-email").value.trim();
+    var inst = document.getElementById("m-inst").value.trim();
+    var ok = true;
+    [["m-lead", lead], ["m-email", email], ["m-inst", inst]].forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      el.classList.toggle("is-error", !pair[1]);
+      if (!pair[1]) ok = false;
+    });
+    if (ok && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById("m-email").classList.add("is-error");
+      ok = false;
+    }
+    if (!ok) {
+      addMsg.className = "lock__msg";
+      addMsg.textContent = "// INCOMPLETE — CHECK HIGHLIGHTED FIELDS.";
+      return;
+    }
+
+    var entry = {
+      id: "m" + Date.now() + Math.random().toString(36).slice(2, 7),
+      ts: new Date().toISOString(),
+      lead: lead,
+      email: email,
+      size: document.getElementById("m-size").value,
+      track: document.getElementById("m-track").value,
+      institution: inst,
+      source: "manual"
+    };
+
+    function finishAdd(msg, ok) {
+      ["m-lead", "m-email", "m-inst"].forEach(function (idv) {
+        document.getElementById(idv).value = "";
+      });
+      addMsg.className = ok ? "lock__msg is-ok" : "lock__msg";
+      addMsg.textContent = msg;
+      render();
+    }
+
+    if (isRemote()) {
+      addMsg.className = "lock__msg";
+      addMsg.textContent = "// TRANSMITTING TO SHARED REGISTRY…";
+      apiCall({ op: "add", payload: JSON.stringify(entry) })
+        .then(function (res) {
+          if (!res || !res.ok) throw new Error("bad");
+          var list = loadData();
+          list.unshift(entry);
+          saveData(list);
+          finishAdd("// ENTRY COMMITTED TO SHARED REGISTRY.", true);
+          setSync("ok", "SHARED SHEET: CONNECTED — ENTRY ADDED");
+        })
+        .catch(function () {
+          addMsg.className = "lock__msg";
+          addMsg.textContent = "// SHEET UNREACHABLE — ENTRY NOT SAVED. FIX CONNECTION AND RETRY.";
+        });
+      return;
+    }
+
+    var list = loadData();
+    list.unshift(entry);
+    saveData(list);
+    finishAdd("// ENTRY COMMITTED TO REGISTRY (LOCAL DEVICE).", true);
+  });
+
+  /* ---------- SEARCH / EXPORT / PURGE ---------- */
+  searchEl.addEventListener("input", function () {
+    editingId = null;
+    render();
+  });
+
+  function csvCell(v) {
+    return '"' + esc(v).replace(/"/g, '""') + '"';
+  }
+  function download(filename, text, mime) {
+    var blob = new Blob([text], { type: mime });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  document.getElementById("export-csv").addEventListener("click", function () {
+    var list = visibleData();
+    var rows = [
+      ["No", "Timestamp", "Team Lead", "Email", "Team Size", "Track", "Institution", "Edited"]
+        .map(csvCell).join(",")
+    ];
+    list.forEach(function (r, i) {
+      rows.push(
+        [list.length - i, r.ts, r.lead, r.email, r.size, r.track, r.institution, r.edited || ""]
+          .map(csvCell).join(",")
+      );
+    });
+    download("nexus-registrations.csv", rows.join("\r\n"), "text/csv;charset=utf-8");
+  });
+
+  document.getElementById("export-json").addEventListener("click", function () {
+    download("nexus-registrations.json", JSON.stringify(visibleData(), null, 2), "application/json");
+  });
+
+  document.getElementById("purge-btn").addEventListener("click", function () {
+    var n = loadData().length;
+    if (!n) return;
+    if (confirm("PURGE ALL " + n + " REGISTRATION(S)? THIS CANNOT BE UNDONE.")) {
+      if (isRemote()) {
+        apiCall({ op: "purge" })
+          .then(function (res) {
+            if (!res || !res.ok) throw new Error("bad");
+            saveData([]);
+            editingId = null;
+            render();
+            setSync("ok", "SHARED SHEET: CONNECTED — REGISTRY PURGED");
+          })
+          .catch(function () {
+            setSync("err", "PURGE FAILED — SHEET UNREACHABLE. NOTHING CHANGED.");
+          });
+        return;
+      }
+      saveData([]);
+      editingId = null;
+      render();
+    }
+  });
+
+  /* ---------- BOOT ---------- */
+  if (sessionOk()) showDash();
+  else showLock("");
+})();
+</script>
+</body>
+</html>
