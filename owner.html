@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>NEXUS // ENG — Owner Registry</title>
+<title>KRYPTON // ENG — Owner Registry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
 /* =========================================================
-   NEXUS // ENG — OWNER REGISTRY CONSOLE
+   KRYPTON // ENG — OWNER REGISTRY CONSOLE (Purple Theme)
    ========================================================= */
 :root {
-  --bg: #0B0F19;
-  --bg-alt: #0E1320;
-  --panel: #121828;
-  --panel-2: #0D111C;
+  --bg: #090614;
+  --bg-alt: #0D0A1C;
+  --panel: #141026;
+  --panel-2: #0E0A1F;
   --white: #FFFFFF;
-  --grey: #9CA3AF;
-  --grey-dim: #6B7280;
-  --crimson: #EF4444;
-  --crimson-dim: rgba(239, 68, 68, 0.35);
-  --gold: #F59E0B;
+  --grey: #A79DB8;
+  --grey-dim: #706680;
+  --crimson: #A855F7;          /* Purple Accent */
+  --crimson-dim: rgba(168, 85, 247, 0.35);
+  --gold: #C084FC;             /* Light Violet Accent */
   --line: rgba(255, 255, 255, 0.10);
   --line-strong: rgba(255, 255, 255, 0.18);
   --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -66,7 +66,7 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 15, 25, 0.94);
+  background: rgba(9, 6, 20, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -86,7 +86,7 @@ ul { list-style: none; }
   font-size: 10.5px;
   letter-spacing: 0.26em;
   color: var(--gold);
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  border: 1px solid rgba(192, 132, 252, 0.4);
   padding: 5px 10px;
   white-space: nowrap;
 }
@@ -121,7 +121,7 @@ main { flex: 1; width: 100%; }
 .field label { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; color: var(--grey); }
 .field input, .field select {
   width: 100%;
-  background: #070A11;
+  background: #080512;
   border: 1px solid var(--line);
   border-radius: 0;
   color: var(--white);
@@ -134,14 +134,14 @@ main { flex: 1; width: 100%; }
   -webkit-appearance: none;
 }
 .field select {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23EF4444' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A855F7' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 42px;
   cursor: pointer;
 }
-.field input::placeholder { color: #6E7686; }
-.field input:focus, .field select:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(239, 68, 68, 0.18); }
+.field input::placeholder { color: #6E6480; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(168, 85, 247, 0.18); }
 .field input.is-error, .field select.is-error { border-color: var(--gold); }
 
 /* ---------- dashboard ---------- */
@@ -162,7 +162,7 @@ main { flex: 1; width: 100%; }
 .search {
   flex: 1 1 260px;
   min-width: 0;
-  background: #070A11;
+  background: #080512;
   border: 1px solid var(--line);
   color: var(--white);
   font-family: var(--mono);
@@ -171,8 +171,8 @@ main { flex: 1; width: 100%; }
   padding: 13px 16px;
   box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
 }
-.search:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(239, 68, 68, 0.18); }
-.search::placeholder { color: #6E7686; }
+.search:focus { outline: none; border-color: var(--crimson); box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(168, 85, 247, 0.18); }
+.search::placeholder { color: #6E6480; }
 .btn--tool { background: transparent; border: 1px solid var(--line-strong); color: var(--white); font-size: 11px; padding: 13px 17px; }
 .btn--tool:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
 .btn--purge { background: transparent; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; padding: 13px 17px; }
@@ -200,14 +200,14 @@ main { flex: 1; width: 100%; }
   letter-spacing: 0.14em;
   color: var(--grey);
   border: 1px solid var(--line);
-  background: #0A0E18;
+  background: #0A0717;
   padding: 11px 14px;
   margin-bottom: 22px;
 }
 .syncbar__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grey-dim); flex: 0 0 auto; }
 .syncbar__dot--ok { background: #34D399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.6); }
 .syncbar__dot--load { background: var(--gold); animation: blink 0.9s steps(2, jump-none) infinite; }
-.syncbar__dot--err { background: var(--crimson); box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
+.syncbar__dot--err { background: var(--crimson); box-shadow: 0 0 8px rgba(168, 85, 247, 0.7); }
 .syncbar__dot--local { background: var(--gold); }
 .syncbar .act { margin-left: auto; }
 @keyframes blink { 50% { opacity: 0.25; } }
@@ -222,12 +222,12 @@ th {
   color: var(--gold);
   padding: 14px 14px;
   border-bottom: 1px solid var(--line-strong);
-  background: #0A0E18;
+  background: #0A0717;
   white-space: nowrap;
 }
 td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey); vertical-align: middle; }
 tbody tr:last-child td { border-bottom: 0; }
-tbody tr:hover td { background: rgba(239, 68, 68, 0.05); }
+tbody tr:hover td { background: rgba(168, 85, 247, 0.05); }
 td.c-lead { color: var(--white); font-weight: 700; white-space: nowrap; }
 td.c-num { color: var(--grey-dim); width: 44px; }
 .emptyRow td { text-align: center; padding: 40px 16px; letter-spacing: 0.14em; color: var(--grey-dim); }
@@ -235,14 +235,14 @@ td.c-num { color: var(--grey-dim); width: 44px; }
 .cellInput, .cellSelect {
   width: 100%;
   min-width: 90px;
-  background: #070A11;
+  background: #080512;
   border: 1px solid var(--crimson);
   color: var(--white);
   font-family: var(--mono);
   font-size: 12.5px;
   padding: 8px 9px;
 }
-.cellInput:focus, .cellSelect:focus { outline: none; box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25); }
+.cellInput:focus, .cellSelect:focus { outline: none; box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25); }
 .cellSelect { cursor: pointer; }
 
 .actions { display: flex; gap: 8px; }
@@ -289,7 +289,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
 <!-- ============ TOP BAR ============ -->
 <header class="obar">
   <div class="obar__inner">
-    <a class="obar__logo" href="index.html">NEXUS <span>// ENG</span></a>
+    <a class="obar__logo" href="index.html">KRYPTON <span>// ENG</span></a>
     <span class="obar__tag">OWNER REGISTRY // RESTRICTED</span>
     <div class="obar__actions">
       <a class="obar__link" href="index.html">← PUBLIC SITE</a>
@@ -305,7 +305,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
     <div class="lock__card">
       <p class="kicker">RESTRICTED CHANNEL // AUTH REQUIRED</p>
       <h1 class="lock__title">Owner Access</h1>
-      <p class="lock__sub">Credential gate for the NEXUS registration registry. Authorized event chairs only — all activity stays in this browser.</p>
+      <p class="lock__sub">Credential gate for the KRYPTON registration registry. Authorized event chairs only — all activity stays in this browser.</p>
 
       <form class="lock__form" id="login-form" novalidate>
         <div class="field">
@@ -411,7 +411,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
     </div>
 
     <p class="note">
-      STORAGE: LOCAL BROWSER (localStorage // KEY: nexus_registrations). SUBMISSIONS FROM index.html IN THIS BROWSER APPEAR HERE LIVE — INLINE EDIT, DELETE, SEARCH, EXPORT AT WILL.
+      STORAGE: LOCAL BROWSER (localStorage // KEY: krypton_registrations). SUBMISSIONS FROM index.html IN THIS BROWSER APPEAR HERE LIVE — INLINE EDIT, DELETE, SEARCH, EXPORT AT WILL.
     </p>
   </section>
 
@@ -419,27 +419,24 @@ td.c-num { color: var(--grey-dim); width: 44px; }
 
 <footer class="foot">
   <div class="foot__inner">
-    <p>© 2026 NEXUS ENGINEERING COUNCIL — RESTRICTED SYSTEM // NX-ENG-S04-OWNER-0001</p>
+    <p>© 2026 KRYPTON ENGINEERING COUNCIL — RESTRICTED SYSTEM // KP-ENG-S04-OWNER-0001</p>
     <p>NODE: IN-BLR-01 // AUTH: SHA-256 // TZ: UTC+05:30</p>
   </div>
 </footer>
 
 <script>
 /* =========================================================
-   NEXUS // ENG — OWNER REGISTRY RUNTIME
+   KRYPTON // ENG — OWNER REGISTRY RUNTIME
    ========================================================= */
 (function () {
   "use strict";
 
   /* ---------- CREDENTIALS ----------
-     Username is plain-text; the password is stored as a SHA-256 hex digest
-     so it never appears in the source. To set your own password, run this
-     in the browser console ON THIS PAGE and paste the result below:
-
-        hashPass("your-new-password").then(console.log)
+     Username: admin
+     Password: krypton (SHA-256 digest)
   */
-  var OWNER_USER = "admin"; // ← CHANGE USERNAME
-  var OWNER_PASS_HASH = "d3af3a8bfc53ead1bb78d744305dc792668b0f50ab4a8292e00648d100224105"; // ← CHANGE PASSWORD HASH
+  var OWNER_USER = "admin";
+  var OWNER_PASS_HASH = "1dc545b102daff0fb59245b92b29cb92da244d432047606c341b34a2ffbb5a87"; // krypton
   var MAX_ATTEMPTS = 5;
   var COOLDOWN_MS = 30000;
 
@@ -527,23 +524,19 @@ td.c-num { color: var(--grey-dim); width: 44px; }
     return Promise.resolve(sha256js(str));
   };
 
-  /* ---------- SHARED REGISTRY CONFIG ----------
-     Paste your deployed Apps Script Web App URL between the quotes below AND
-     in index.html. Leave "" to run in local-only (single device) mode.
-     Setup guide: SETUP.md | Backend: nexus-sheet-backend.gs
-     SHEET_KEY must match API_KEY inside the Apps Script. */
-  var SHEET_URL = "https://script.google.com/macros/s/AKfycbzd3XtH9yTtwIsweLFPOThTZSmScsZPFW4Cx-N8nwPlwrxAtft2ZvNfhG595oaM8ldh/exec";
+  /* ---------- SHARED REGISTRY CONFIG ---------- */
+  var SHEET_URL = "https://script.google.com/macros/s/AKfycbyI_6HgtHfZ4nOmQLeBs7QxbXWQBGjq6NppZJMEhzUHwe8vCY6I3fUqFlipEoDAr99_ZQ/exec";
   var SHEET_KEY = "NEXUS-S04-KEY-8F3A2B";
 
   /* ---------- STORAGE ---------- */
-  var STORE_KEY = "nexus_registrations";
-  var AUTH_KEY = "nexus_owner_auth";
+  var STORE_KEY = "krypton_registrations";
+  var AUTH_KEY = "krypton_owner_auth";
 
   function isRemote() {
     return Boolean(SHEET_URL) || typeof window.__mockApi === "function";
   }
 
- /* Transport: JSONP directly to bypass Google redirect CORS restrictions */
+  /* Transport: Direct JSONP to bypass CORS */
   function apiCall(params) {
     if (typeof window.__mockApi === "function") return window.__mockApi(params);
     if (!SHEET_URL) return Promise.reject(new Error("NOT_CONFIGURED"));
@@ -562,12 +555,12 @@ td.c-num { color: var(--grey-dim); width: 44px; }
 
   function jsonpCall(url) {
     return new Promise(function (resolve, reject) {
-      var name = "__nxCb" + Date.now() + Math.floor(Math.random() * 1e6);
+      var name = "__kpOwnerCb" + Date.now() + Math.floor(Math.random() * 1e6);
       var script = document.createElement("script");
       var done = false;
       var timer = setTimeout(function () {
         finish(new Error("TIMEOUT"));
-      }, 15000);
+      }, 30000);
       function finish(err, data) {
         if (done) return;
         done = true;
@@ -596,14 +589,14 @@ td.c-num { color: var(--grey-dim); width: 44px; }
     try {
       return JSON.parse(localStorage.getItem(STORE_KEY)) || [];
     } catch (e) {
-      return window.__nexusRegs || [];
+      return window.__kryptonRegs || [];
     }
   }
   function saveData(list) {
     try {
       localStorage.setItem(STORE_KEY, JSON.stringify(list));
     } catch (e) {
-      window.__nexusRegs = list;
+      window.__kryptonRegs = list;
     }
   }
 
@@ -740,10 +733,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
 
   function refreshFromSheet() {
     if (!isRemote()) {
-      setSync(
-        "local",
-        "LOCAL-ONLY MODE — PASTE YOUR SHEET URL INTO owner.html TO SYNC ACROSS DEVICES"
-      );
+      setSync("local", "LOCAL-ONLY MODE");
       return Promise.resolve();
     }
     setSync("load", "CONNECTING TO SHARED REGISTRY…");
@@ -789,14 +779,14 @@ td.c-num { color: var(--grey-dim); width: 44px; }
             remote.concat(orphans),
             "SHARED SHEET: CONNECTED — PUSHED " +
               orphans.length +
-              " DEVICE-LOCAL ENTR" +
+              " LOCAL ENTR" +
               (orphans.length === 1 ? "Y" : "IES")
           );
         });
       })
       .catch(function () {
         render();
-        setSync("err", "SHARED SHEET UNREACHABLE — SHOWING LAST LOCAL CACHE");
+        setSync("err", "SHARED SHEET UNREACHABLE — SHOWING LOCAL CACHE");
       });
   }
 
@@ -847,7 +837,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
       td0.colSpan = 8;
       td0.textContent = all.length
         ? "// NO ENTRIES MATCH THE CURRENT FILTER."
-        : "// REGISTRY EMPTY — SUBMISSIONS FROM index.html APPEAR HERE INSTANTLY.";
+        : "// REGISTRY EMPTY — SUBMISSIONS APPEAR HERE.";
       tr0.appendChild(td0);
       rowsEl.appendChild(tr0);
       return;
@@ -988,7 +978,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
           setSync("ok", "SHARED SHEET: CONNECTED — ENTRY UPDATED");
         })
         .catch(function () {
-          setSync("err", "UPDATE FAILED — SHEET UNREACHABLE. KEEP EDITING, THEN RETRY SAVE.");
+          setSync("err", "UPDATE FAILED — SHEET UNREACHABLE.");
         });
       return;
     }
@@ -1024,7 +1014,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
             setSync("ok", "SHARED SHEET: CONNECTED — ENTRY DELETED");
           })
           .catch(function () {
-            setSync("err", "DELETE FAILED — SHEET UNREACHABLE. NOTHING CHANGED.");
+            setSync("err", "DELETE FAILED — SHEET UNREACHABLE.");
           });
         return;
       }
@@ -1098,7 +1088,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
         })
         .catch(function () {
           addMsg.className = "lock__msg";
-          addMsg.textContent = "// SHEET UNREACHABLE — ENTRY NOT SAVED. FIX CONNECTION AND RETRY.";
+          addMsg.textContent = "// SHEET UNREACHABLE — ENTRY NOT SAVED.";
         });
       return;
     }
@@ -1106,7 +1096,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
     var list = loadData();
     list.unshift(entry);
     saveData(list);
-    finishAdd("// ENTRY COMMITTED TO REGISTRY (LOCAL DEVICE).", true);
+    finishAdd("// ENTRY COMMITTED TO REGISTRY.", true);
   });
 
   /* ---------- SEARCH / EXPORT / PURGE ---------- */
@@ -1142,11 +1132,11 @@ td.c-num { color: var(--grey-dim); width: 44px; }
           .map(csvCell).join(",")
       );
     });
-    download("nexus-registrations.csv", rows.join("\r\n"), "text/csv;charset=utf-8");
+    download("krypton-registrations.csv", rows.join("\r\n"), "text/csv;charset=utf-8");
   });
 
   document.getElementById("export-json").addEventListener("click", function () {
-    download("nexus-registrations.json", JSON.stringify(visibleData(), null, 2), "application/json");
+    download("krypton-registrations.json", JSON.stringify(visibleData(), null, 2), "application/json");
   });
 
   document.getElementById("purge-btn").addEventListener("click", function () {
@@ -1163,7 +1153,7 @@ td.c-num { color: var(--grey-dim); width: 44px; }
             setSync("ok", "SHARED SHEET: CONNECTED — REGISTRY PURGED");
           })
           .catch(function () {
-            setSync("err", "PURGE FAILED — SHEET UNREACHABLE. NOTHING CHANGED.");
+            setSync("err", "PURGE FAILED — SHEET UNREACHABLE.");
           });
         return;
       }
