@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NEXUS // ENG — National Robotics &amp; Technology Hackathon</title>
-<meta name="description" content="NEXUS // ENG — the premier national robotics and technology hackathon. 48-hour live build. Register your team." />
+<title>KRYPTON // ENG — National Robotics &amp; Technology Hackathon</title>
+<meta name="description" content="KRYPTON // ENG — the premier national robotics and technology hackathon. 48-hour live build. Register your team." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
 /* =========================================================
-   NEXUS // ENG — design system
+   KRYPTON // ENG — design system (Electric Violet / Purple)
    ========================================================= */
 :root {
-  --bg: #0B0F19;
-  --bg-alt: #0E1320;
-  --panel: #121828;
-  --panel-2: #0D111C;
+  --bg: #090614;
+  --bg-alt: #0D0A1C;
+  --panel: #141026;
+  --panel-2: #0E0A1F;
   --white: #FFFFFF;
-  --grey: #9CA3AF;
-  --grey-dim: #6B7280;
-  --crimson: #EF4444;
-  --crimson-dim: rgba(239, 68, 68, 0.35);
-  --gold: #F59E0B;
+  --grey: #A79DB8;
+  --grey-dim: #706680;
+  --crimson: #A855F7;          /* Primary Accent: Electric Purple */
+  --crimson-dim: rgba(168, 85, 247, 0.35);
+  --gold: #C084FC;             /* Secondary Accent: Light Violet */
   --line: rgba(255, 255, 255, 0.10);
   --line-strong: rgba(255, 255, 255, 0.18);
   --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -93,7 +93,7 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 15, 25, 0.92);
+  background: rgba(9, 6, 20, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -159,11 +159,11 @@ img { max-width: 100%; display: block; }
   border: 3px solid var(--crimson);
   font-size: 15px;
   padding: 22px 54px;
-  box-shadow: 0 0 24px var(--crimson-dim), inset 0 0 14px rgba(239, 68, 68, 0.12);
+  box-shadow: 0 0 24px var(--crimson-dim), inset 0 0 14px rgba(168, 85, 247, 0.12);
 }
 .btn--neon:hover {
   background: var(--crimson);
-  box-shadow: 0 0 44px rgba(239, 68, 68, 0.6), inset 0 0 14px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 44px rgba(168, 85, 247, 0.6), inset 0 0 14px rgba(255, 255, 255, 0.2);
 }
 
 .btn--submit {
@@ -190,8 +190,8 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
@@ -235,7 +235,7 @@ img { max-width: 100%; display: block; }
 .countdown__num {
   font-family: var(--mono);
   font-weight: 700;
-  font-size: clamp(40px, 7vw, 84px);
+  font-size: clamp(34px, 6vw, 76px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--white);
@@ -255,9 +255,7 @@ img { max-width: 100%; display: block; }
   line-height: 1;
   color: var(--crimson);
   align-self: center;
-  animation: pulse-sep 1s steps(2, jump-none) infinite;
 }
-@keyframes pulse-sep { 50% { opacity: 0.25; } }
 
 .countdown__meta {
   margin-top: 18px;
@@ -386,9 +384,9 @@ img { max-width: 100%; display: block; }
   padding: 9px 16px;
   border: 1px solid currentColor;
 }
-.status--active { color: var(--crimson); background: rgba(239, 68, 68, 0.10); }
-.status--enroute { color: var(--gold); background: rgba(245, 158, 11, 0.10); }
-.status--locked { color: var(--grey-dim); background: rgba(107, 114, 128, 0.10); }
+.status--active { color: var(--crimson); background: rgba(168, 85, 247, 0.10); }
+.status--enroute { color: var(--gold); background: rgba(192, 132, 252, 0.10); }
+.status--locked { color: var(--grey-dim); background: rgba(112, 102, 128, 0.10); }
 
 /* =========================================================
    5. BENTO PRIZES
@@ -413,7 +411,7 @@ img { max-width: 100%; display: block; }
 .prize--main {
   grid-row: span 2;
   background:
-    linear-gradient(160deg, rgba(239, 68, 68, 0.14), transparent 55%),
+    linear-gradient(160deg, rgba(168, 85, 247, 0.14), transparent 55%),
     var(--panel);
   border-color: var(--crimson-dim);
   justify-content: center;
@@ -490,7 +488,7 @@ img { max-width: 100%; display: block; }
 .field input,
 .field select {
   width: 100%;
-  background: #070A11;
+  background: #080512;
   border: 1px solid var(--line);
   border-radius: 0;
   color: var(--white);
@@ -503,18 +501,18 @@ img { max-width: 100%; display: block; }
   -webkit-appearance: none;
 }
 .field select {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23EF4444' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A855F7' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 18px center;
   padding-right: 44px;
   cursor: pointer;
 }
-.field input::placeholder { color: #6E7686; }
+.field input::placeholder { color: #6E6480; }
 .field input:focus,
 .field select:focus {
   outline: none;
   border-color: var(--crimson);
-  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(239, 68, 68, 0.18);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(168, 85, 247, 0.18);
 }
 .field input.is-error,
 .field select.is-error { border-color: var(--gold); }
@@ -548,10 +546,10 @@ img { max-width: 100%; display: block; }
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: #565E6E;
+  color: #635A75;
   filter: grayscale(1);
   border: 1px solid var(--line);
-  background: #0C111C;
+  background: #0E0A1E;
   padding: 18px 26px;
   flex: 1 1 auto;
   text-align: center;
@@ -641,7 +639,7 @@ img { max-width: 100%; display: block; }
 <!-- ============ 1. COMPACT NAVBAR ============ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="#top" class="nav__logo">NEXUS <span>// ENG</span></a>
+    <a href="#top" class="nav__logo">KRYPTON <span>// ENG</span></a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#timeline">Timeline</a>
@@ -664,27 +662,27 @@ img { max-width: 100%; display: block; }
 
       <div class="countdown reveal" role="timer" aria-live="off" aria-label="Countdown to registration close">
         <div class="countdown__cell">
-          <span class="countdown__num" id="cd-days">00</span>
+          <span class="countdown__num" id="cd-days">N/A</span>
           <span class="countdown__label">DAYS</span>
         </div>
         <span class="countdown__sep" aria-hidden="true">:</span>
         <div class="countdown__cell">
-          <span class="countdown__num" id="cd-hours">00</span>
+          <span class="countdown__num" id="cd-hours">N/A</span>
           <span class="countdown__label">HOURS</span>
         </div>
         <span class="countdown__sep" aria-hidden="true">:</span>
         <div class="countdown__cell">
-          <span class="countdown__num" id="cd-mins">00</span>
+          <span class="countdown__num" id="cd-mins">N/A</span>
           <span class="countdown__label">MINS</span>
         </div>
         <span class="countdown__sep" aria-hidden="true">:</span>
         <div class="countdown__cell">
-          <span class="countdown__num" id="cd-secs">00</span>
+          <span class="countdown__num" id="cd-secs">N/A</span>
           <span class="countdown__label">SECS</span>
         </div>
       </div>
 
-      <p class="countdown__meta reveal">REGISTRATION GATE CLOSES <span class="gold">— 14 DEC 2026 // 23:59 IST</span></p>
+      <p class="countdown__meta reveal">REGISTRATION GATE SCHEDULE <span class="gold">— TO BE ANNOUNCED // STAY TUNED</span></p>
 
       <div class="hero__cta reveal">
         <a href="#register" class="btn btn--neon">REGISTER TEAM NOW</a>
@@ -706,7 +704,7 @@ img { max-width: 100%; display: block; }
       <div class="about__lead reveal">
         <h2 class="section__title">WE ONLY<br />RECRUIT BUILDERS.</h2>
         <div class="about__copy">
-          <p>NEXUS is the country's premier robotics and technology hackathon — a pressure-tested arena where teams are handed real, unsolved engineering constraints and expected to ship a working system before the clock hits zero.</p>
+          <p>KRYPTON is the country's premier robotics and technology hackathon — a pressure-tested arena where teams are handed real, unsolved engineering constraints and expected to ship a working system before the clock hits zero.</p>
           <p>Expect hard problems in autonomy, embedded control, computer vision, industrial automation and edge AI. No slide-deck science. Every submission must move, sense, or decide on its own. Mentors circulate, judges interrogate, and only the machines that survive testing make the stage.</p>
         </div>
       </div>
@@ -901,7 +899,7 @@ img { max-width: 100%; display: block; }
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__brand">
-        <p class="nav__logo">NEXUS <span>// ENG</span></p>
+        <p class="nav__logo">KRYPTON <span>// ENG</span></p>
         <p class="footer__tag">NATIONAL ROBOTICS &amp; TECHNOLOGY HACKATHON — SEASON 04</p>
         <p class="footer__meta">SYS.STATUS: <span class="gold">NOMINAL</span> // NODE: IN-BLR-01 // BUILD: 4.2.1</p>
       </div>
@@ -913,19 +911,19 @@ img { max-width: 100%; display: block; }
             <span class="footer__name">Dr. Aisha Rahman</span>
             <span class="footer__role">General Chair</span>
             <a href="tel:+919810042211">+91 98100 42211</a>
-            <a href="mailto:aisha.rahman@nexus-eng.org">aisha.rahman@nexus-eng.org</a>
+            <a href="mailto:aisha.rahman@krypton-eng.org">aisha.rahman@krypton-eng.org</a>
           </li>
           <li>
             <span class="footer__name">Prof. Daniel Okafor</span>
             <span class="footer__role">Technical Chair</span>
             <a href="tel:+919820077315">+91 98200 77315</a>
-            <a href="mailto:daniel.okafor@nexus-eng.org">daniel.okafor@nexus-eng.org</a>
+            <a href="mailto:daniel.okafor@krypton-eng.org">daniel.okafor@krypton-eng.org</a>
           </li>
           <li>
             <span class="footer__name">Meera Krishnan</span>
             <span class="footer__role">Operations Chair</span>
             <a href="tel:+919930018846">+91 99300 18846</a>
-            <a href="mailto:meera.krishnan@nexus-eng.org">meera.krishnan@nexus-eng.org</a>
+            <a href="mailto:meera.krishnan@krypton-eng.org">meera.krishnan@krypton-eng.org</a>
           </li>
         </ul>
       </div>
@@ -943,23 +941,20 @@ img { max-width: 100%; display: block; }
     </div>
 
     <div class="footer__bar">
-      <p>© 2026 NEXUS Engineering Council. All rights reserved. // Region: IN // Locale: en-IN // TZ: UTC+05:30</p>
-      <p>© 2026 LOCAL CHAPTER MARKS — E&amp;OE // DOCUMENT ID: NX-ENG-S04-LEGAL-0093</p>
+      <p>© 2026 KRYPTON Engineering Council. All rights reserved. // Region: IN // Locale: en-IN // TZ: UTC+05:30</p>
+      <p>© 2026 LOCAL CHAPTER MARKS — E&amp;OE // DOCUMENT ID: KP-ENG-S04-LEGAL-0093</p>
     </div>
   </div>
 </footer>
 
 <script>
 /* =========================================================
-   NEXUS // ENG — runtime
+   KRYPTON // ENG — runtime
    ========================================================= */
 (function () {
   "use strict";
 
-  /* ---------- 1. LIVE COUNTDOWN ---------- */
-  // Registration gate closes 14 Dec 2026, 23:59 IST (UTC+05:30)
-  var TARGET = new Date("2026-12-14T23:59:00+05:30").getTime();
-
+  /* ---------- 1. COUNTDOWN DISPLAY (STATIC N/A) ---------- */
   var els = {
     days: document.getElementById("cd-days"),
     hours: document.getElementById("cd-hours"),
@@ -967,34 +962,12 @@ img { max-width: 100%; display: block; }
     secs: document.getElementById("cd-secs")
   };
 
-  function pad(n) {
-    return String(n).padStart(2, "0");
-  }
+  els.days.textContent = "N/A";
+  els.hours.textContent = "N/A";
+  els.mins.textContent = "N/A";
+  els.secs.textContent = "N/A";
 
-  function tick() {
-    var diff = TARGET - Date.now();
-
-    if (diff <= 0) {
-      els.days.textContent = "00";
-      els.hours.textContent = "00";
-      els.mins.textContent = "00";
-      els.secs.textContent = "00";
-      return;
-    }
-
-    var s = Math.floor(diff / 1000);
-    els.days.textContent = pad(Math.floor(s / 86400));
-    els.hours.textContent = pad(Math.floor((s % 86400) / 3600));
-    els.mins.textContent = pad(Math.floor((s % 3600) / 60));
-    els.secs.textContent = pad(s % 60);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-
-  /* ---------- 2. SCROLL REVEALS ----------
-     Scroll-based instead of IntersectionObserver so anchor jumps
-     never leave skipped sections stuck at opacity:0. */
+  /* ---------- 2. SCROLL REVEALS ---------- */
   var pending = Array.prototype.slice.call(
     document.querySelectorAll(".reveal")
   );
@@ -1046,20 +1019,20 @@ img { max-width: 100%; display: block; }
   syncNav();
 
   /* ---------- 4. REGISTRATION FORM + PERSISTENCE ---------- */
-  var STORE_KEY = "nexus_registrations";
+  var STORE_KEY = "krypton_registrations";
 
   function loadRegs() {
     try {
       return JSON.parse(localStorage.getItem(STORE_KEY)) || [];
     } catch (e) {
-      return window.__nexusRegs || [];
+      return window.__kryptonRegs || [];
     }
   }
   function saveRegs(list) {
     try {
       localStorage.setItem(STORE_KEY, JSON.stringify(list));
     } catch (e) {
-      window.__nexusRegs = list;
+      window.__kryptonRegs = list;
     }
   }
   function pushReg(entry) {
@@ -1070,14 +1043,14 @@ img { max-width: 100%; display: block; }
   }
 
   /* ---------- SHARED REGISTRY CONFIG ---------- */
-  var SHEET_URL = "https://script.google.com/macros/s/AKfycbzd3XtH9yTtwIsweLFPOThTZSmScsZPFW4Cx-N8nwPlwrxAtft2ZvNfhG595oaM8ldh/exec";
+  var SHEET_URL = "https://script.google.com/macros/s/AKfycbyI_6HgtHfZ4nOmQLeBs7QxbXWQBGjq6NppZJMEhzUHwe8vCY6I3fUqFlipEoDAr99_ZQ/exec";
   var SHEET_KEY = "NEXUS-S04-KEY-8F3A2B";
 
   function isRemote() {
     return Boolean(SHEET_URL) || typeof window.__mockApi === "function";
   }
 
-  /* Transport: Direct JSONP to completely bypass Google's redirect CORS restrictions */
+  /* Transport: Direct JSONP to bypass CORS restrictions */
   function apiCall(params) {
     if (typeof window.__mockApi === "function") return window.__mockApi(params);
     if (!SHEET_URL) return Promise.reject(new Error("NOT_CONFIGURED"));
@@ -1096,12 +1069,12 @@ img { max-width: 100%; display: block; }
 
   function jsonpCall(url) {
     return new Promise(function (resolve, reject) {
-      var name = "__nxCb" + Date.now() + Math.floor(Math.random() * 1e6);
+      var name = "__kpCb" + Date.now() + Math.floor(Math.random() * 1e6);
       var script = document.createElement("script");
       var done = false;
       var timer = setTimeout(function () {
         finish(new Error("TIMEOUT"));
-      }, 15000);
+      }, 30000);
       function finish(err, data) {
         if (done) return;
         done = true;
@@ -1126,14 +1099,14 @@ img { max-width: 100%; display: block; }
     });
   }
 
-  /* Push a submission to the shared sheet; falls back to local capture. */
+  /* Push submission to the shared sheet */
   function transmit(entry, entryNo, greet) {
     if (!isRemote()) {
       status.textContent =
         "// ENTRY RECEIVED. WELCOME TO THE CODEBASE, " +
         greet +
         " — ENTRY #" + entryNo +
-        " LOGGED (LOCAL MODE — PASTE YOUR SHEET URL INTO index.html TO SYNC ALL DEVICES).";
+        " LOGGED (LOCAL MODE).";
       return;
     }
     apiCall({ op: "add", payload: JSON.stringify(entry) })
